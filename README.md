@@ -12,6 +12,11 @@ Tipo de Instância | Tipo de chave | Cong. Rede | Armazenamento
 ---|---|---|---
 T3 Small (Family) | .pem | 0.0.0.0/0 | 8GiB (gp2)
 
+<p>Observação: A configuração de rede está com 0.0.0.0/0 para facilitar o acesso mas<br>
+não é uma boa prática utilizar essa cong. de rede pois pode deixar a instância vulnerável<br>
+estou utilizando porquê é um ambiente apenas para testes, nada de confidêncial está em risco<br>
+a instância foi criada apenas para fins práticos.</p>
+
 Após isso ainda tem um script para automatizar algumas instalações da instância<br>
 para automatizar alguns passos e ir adiantando:
 
