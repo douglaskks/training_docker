@@ -3,9 +3,12 @@
 Este repositório foi criado para adicionar meus conhcimentos pôsto em prática<br>
 com o Docker e alguns dos princiapais componentes da AWS (Amazon Web Services).<br>
 
-<div align="left">
-<a href="https://cdn-icons-png.flaticon.com/512/25/25657.png" target="_blank"><img height="230" width="230" src="https://cdn-icons-png.flaticon.com/512/25/25657.png" target="_blank"></a>
+<div style:"display= inline_block">
+
+<a href="https://cdn-icons-png.flaticon.com/512/25/25657.png" target="_blank"><img height="200" width="200" src="https://cdn-icons-png.flaticon.com/512/25/25657.png" target="_blank"></a> <a href="https://img.icons8.com/color/256/amazon-web-services.png" target="_blank"><img height="200" width="200" src="https://img.icons8.com/color/256/amazon-web-services.png" target="_blank"></a>
+
 </div><br>
+
 
 Aqui irei mostrar todo o processo e o passo a passo para criar instância, adicionar<br>
 contêineres e gerenciá-los.
