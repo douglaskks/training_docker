@@ -51,3 +51,8 @@ para automatizar alguns passos e ir adiantando:
         https://download.docker.com/linux/rhel/docker-ce.repo
     yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     
+
+
+<h1> Referências </h1>
+
+<a align="center" href="https://docs.docker.com/engine/install/rhel/"> Documentação Docker </a><a align="center" href="https://cdn-icons-png.flaticon.com/512/5969/5969120.png" target="_blank"><img height="22" width="22" src="https://cdn-icons-png.flaticon.com/512/5969/5969120.png" target="_blank"></a>
