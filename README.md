@@ -29,12 +29,25 @@ a instância foi criada apenas para fins práticos.
 Após isso ainda tem um script para automatizar algumas instalações da instância<br>
 para automatizar alguns passos e ir adiantando:
 
+<h1><a href="https://cdn-icons-png.flaticon.com/512/8870/8870481.png" target="_blank"><img height="22" width="22" src="https://cdn-icons-png.flaticon.com/512/8870/8870481.png" target="_blank"></a>  user_data.sh</h1>
+
     #!/bin/bash
-    # Use this for your user data (script from top to bottom)
-    # install httpd (Linux 2 version)
+
     yum update -y
     yum install -y httpd
-    systemctl start httpd
-    systemctl enable httpd
-    echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+    yum install yum remove docker \
+                      docker-client \
+                      docker-client-latest \
+                      docker-common \
+                      docker-latest \
+                      docker-latest-logrotate \
+                      docker-logrotate \
+                      docker-engine \
+                      podman \
+                      runc
+    yum install -y yum-utils
+    yum-config-manager \
+        --add-repo \
+        https://download.docker.com/linux/rhel/docker-ce.repo
+    yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     
