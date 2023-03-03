@@ -1,5 +1,3 @@
-@@ -1,59 +1,65 @@
-### Treinando Docker
 Este repositório foi criado para adicionar meus conhcimentos pôsto em prática<br>
 com o Docker e alguns dos princiapais componentes da AWS (Amazon Web Services).<br>
 <div style:"display= inline_block">
@@ -7,7 +5,11 @@ com o Docker e alguns dos princiapais componentes da AWS (Amazon Web Services).<
 </div><br>
 Aqui irei mostrar todo o processo e o passo a passo para criar instância, adicionar<br>
 contêineres e gerenciá-los.
+
+
 ### Detalhes da instância AWS (Amazon Web Services)
+
+
 Tipo de Instância | Tipo de chave | Cong. Rede | Armazenamento
 ---|---|---|---
 T3 Small (Family) | .pem | 0.0.0.0/0 | 8GiB (gp2)
@@ -19,7 +21,10 @@ a instância foi criada apenas para fins práticos.
 </div><br>
 Após isso ainda tem um script para automatizar algumas instalações da instância<br>
 para automatizar alguns passos e ir adiantando:
-<h1><a href="https://cdn-icons-png.flaticon.com/512/8870/8870481.png" target="_blank"><img height="22" width="22" src="https://cdn-icons-png.flaticon.com/512/8870/8870481.png" target="_blank"></a>  user_data.sh</h1>
+
+
+<h1><a href="https://cdn-icons-png.flaticon.com/512/8870/8870481.png" target="_blank"><img height="22" width="22" src="https://cdn-icons-png.flaticon.com/512/8870/8870481.png" target="_blank"></a>user_data.sh</h1>
+    
     #!/bin/bash
     yum update -y
     yum install -y httpd
