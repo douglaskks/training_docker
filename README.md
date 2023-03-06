@@ -66,15 +66,91 @@ O passo a passo da configuração do Linux está no outro projeto feito<br>
 para criar o NFS que foi feito anteriormente <a href="https://github.com/douglaskks/NFS-Linux---Verificador-Online">clique aqui</a> aqui iremos <br>
 tratar apena so passo a passo da AWS.
 
-### 1° Passo
+### 1° Passo ( EFS )
 
-Inicialmente foi configurado o efs (elastic file system):
-    - Criar pasta do efs com o <i> mkdir efs-utils </i>
-    - Montar o EFS no diretório criado acima: <i> sudo mount IP_OU_DNS_DO_NFS:/ /mnt/nfs </i>
-    - Verificar de o efs está funcionando: <i> df -h </i>
-    - Automatizar o inicio do efs no boot (opcional): <i> vim /etc/fstab </i>
-    - Adicionar uma linha abaixo do que já estiver escrito: <i> IP_OU_DNS_DO_NFS:/ /mnt/nfs nfs defaults 0 0 </i>
-    - Salvar arquivo: <i> ESC, :wq, ENTER </i>
+Inicialmente foi configurado o efs (elastic file system):<br>
+    - Criar pasta do efs com o <i> mkdir efs-utils </i><br>
+    - Montar o EFS no diretório criado acima: <i> sudo mount IP_OU_DNS_DO_NFS:/ /mnt/nfs </i><br>
+    - Verificar de o efs está funcionando: <i> df -h </i><br>
+    - Automatizar o inicio do efs no boot (opcional): <i> vim /etc/fstab </i><br>
+    - Adicionar uma linha abaixo do que já estiver escrito: <i> IP_OU_DNS_DO_NFS:/ /mnt/nfs nfs defaults 0 0 </i><br>
+    - Salvar arquivo: <i> ESC, :wq, ENTER </i><br>
+
+### 2° Passo ( Docker Compose )
+
+
+     version: '3'
+     services:
+        db:
+           image: mysql:8.0.19
+           volumes:
+              - db_data:/var/lib/mysql
+           restart: always
+           environment:
+              MYSQL_ROOT_PASSWORD: wordpress
+              MYSQL_USER: wordpress
+              MYSQL_PASSWORD: wordpress
+              MYSQL_DATABASE: wordpress
+        wordpress:
+           image: wordpress:latest
+           volumes:
+              - /efs-utils/montagem/wordpress:/var/www/html
+           environment:
+              WORDPRESS_DB_HOST: db
+              WORDPRESS_DB_NAME: wordpress
+              WORDPRESS_DB_USER: wordpress
+              WORDPRESS_DB_PASSWORD: wordpress
+           ports:
+              - "8080:80"
+           restart: always
+           depends_on:
+              - db
+     volumes:
+       db_data:
+
+Com o <b>docker-compose.yml</b> criado seguiremos com os comandos.<br>
+    - Iniciar o docker antes de tudo: <i> systemctl start docker.service </i><br>
+    - Verificar se o docker está ativo: <i> systemctl status docker.service </i><br>
+    - Com o docker ativo, iremos iniciar o docker compose para criar as instâncias<br>
+       do Wordpress e o mysql: <i> docker-compose up -d </i><br>
+    - Verificar se os contêineres estão funcionando corretamente: <i> docker container ps </i><br>
+    
+    
+### 3° Passo ALB (Application Load Balancer)
+
+Inicialmente na página inicial da AWS (Amazon Web Service) vá no serviço de EC2 e escolha<br>
+a opção de <b> target Group </b> ou <b> Grupos de Destino </b> pois iremos configurar primeiro<br>
+o grupo de destino pra depois criarmos o <b> Load Balancer </b>
+
+Dentro do serviço de <b>Target Group</b> siga os seguintes passos:<br>
+      - <b>Create Target Group</b> ou <b>Criar Grupo de Destino</b><br>
+      - Escolha a configuração básica: <i> Instance </i> ou <i> Instância </i><br>
+      - Crie um nome do Target Group de sua preferência<br>
+      - Escolha o protocolo e adicione a porta em que seu contêiner está<br>
+        rodando os serviços (Wordpress e Mysql).<br>
+      - Escolha a VPC criada para que o target group saiba em qual Availability Zone<br>
+        irá trabalhar.<br>
+      - Health Checks: <i> HTTP </i><br>
+      - Pode dar um <b> Next</b> ou <b>Próximo</b><br>
+      <b>- Após isso irá aparecr a tela de conclusão</b>
+      - Coloque a porta configurada para o site ficar disponível que você<br>
+      configurou no Docker Compose, no meu caso foi 8080 e clique em <b> Include as pending below </b><br>
+      - Revise as configurações que seu Target group ficou.<br>
+      - Caso estiver tudo certo pode clicar em <b>Criar Grupo de Destino</b> ou <b> Create Target Group</b><br>
+      
+ALB Agora:
+      - Após concluir as configurações do Target group vamos para a opção<br>
+      Load Balancer no Serviço de EC2<br>
+      - Escolha a opção de <b> Application Load Balancer </b> e clique em <b> Create </b>
+      - Escolha um nome para seu Load balance.
+      - No Scheme você deixará a opção <b> internal-facing</b>
+      - O tipo de endereço de IP será o <b> IPv4 </b>
+      - No Networking Map você irá selecionar sua VPC que terá 2 subredes configuradas<br>
+      para que as AZ possam mudar se algum der errado.<br>
+      - Após isso escolha seu <b> Security groups </b> ou <b> Grupo de segurança </b>
+      - E por último na opção de Listeners você irá escolher seu Target Group criado anteriormente.<br>
+      - Revise suas configurações.<br>
+      - E clique em <b>Create Load Balancer</b> ou <b> Criar Load Balancer </b>
 
 <h1> Referências </h1>
 
