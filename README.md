@@ -30,8 +30,10 @@ não é uma boa prática utilizar essa cong. de rede pois pode deixar a instânc
 estou utilizando porquê é um ambiente apenas para testes, nada de confidêncial está em risco<br>
 a instância foi criada apenas para fins práticos.
 </div><br>
-Após isso ainda tem um script para automatizar algumas instalações da instância<br>
-para automatizar alguns passos e ir adiantando:
+
+### Passo a passo para a execução do projeto
+
+Script para automatizar algumas instalações e configurações da instância<br>
 
 
 <h1><a href="https://cdn-icons-png.flaticon.com/512/8870/8870481.png" target="_blank"><img height="22" width="22" src="https://cdn-icons-png.flaticon.com/512/8870/8870481.png" target="_blank"></a>user_data.sh</h1>
@@ -56,11 +58,23 @@ para automatizar alguns passos e ir adiantando:
     yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     yum install -y git
 
-    curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
+    curl -L "https://github.com/docker/compose/releases/download/latest/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
     mv docker-compose /usr/local/bin && sudo chmod +x /usr/local/bin/docker-compose
     ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
+O passo a passo da configuração do Linux está no outro projeto feito<br>
+para criar o NFS que foi feito anteriormente <a href="https://github.com/douglaskks/NFS-Linux---Verificador-Online">clique aqui</a> aqui iremos <br>
+tratar apena so passo a passo da AWS.
 
+### 1° Passo
+
+Inicialmente foi configurado o efs (elastic file system):
+    - Criar pasta do efs com o <i> mkdir efs-utils </i>
+    - Montar o EFS no diretório criado acima: <i> sudo mount IP_OU_DNS_DO_NFS:/ /mnt/nfs </i>
+    - Verificar de o efs está funcionando: <i> df -h </i>
+    - Automatizar o inicio do efs no boot (opcional): <i> vim /etc/fstab </i>
+    - Adicionar uma linha abaixo do que já estiver escrito: <i> IP_OU_DNS_DO_NFS:/ /mnt/nfs nfs defaults 0 0 </i>
+    - Salvar arquivo: <i> ESC, :wq, ENTER </i>
 
 <h1> Referências </h1>
 
