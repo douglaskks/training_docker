@@ -64,7 +64,7 @@ Script para automatizar algumas instalações e configurações da instância<br
 
 O passo a passo da configuração do Linux está no outro projeto feito<br>
 para criar o NFS que foi feito anteriormente <a href="https://github.com/douglaskks/NFS-Linux---Verificador-Online">clique aqui</a> aqui iremos <br>
-tratar apena so passo a passo da AWS.
+tratar apenas o passo a passo da AWS.
 
 ### 1° Passo ( EFS )
 
