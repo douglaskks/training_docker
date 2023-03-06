@@ -141,16 +141,16 @@ Dentro do serviço de <b>Target Group</b> siga os seguintes passos:<br>
 ALB Agora:
       - Após concluir as configurações do Target group vamos para a opção<br>
       Load Balancer no Serviço de EC2<br>
-      - Escolha a opção de <b> Application Load Balancer </b> e clique em <b> Create </b>
-      - Escolha um nome para seu Load balance.
-      - No Scheme você deixará a opção <b> internal-facing</b>
-      - O tipo de endereço de IP será o <b> IPv4 </b>
+      - Escolha a opção de <b> Application Load Balancer </b> e clique em <b> Create </b><br>
+      - Escolha um nome para seu Load balance.<br>
+      - No Scheme você deixará a opção <b> internal-facing</b><br>
+      - O tipo de endereço de IP será o <b> IPv4 </b><br>
       - No Networking Map você irá selecionar sua VPC que terá 2 subredes configuradas<br>
       para que as AZ possam mudar se algum der errado.<br>
-      - Após isso escolha seu <b> Security groups </b> ou <b> Grupo de segurança </b>
+      - Após isso escolha seu <b> Security groups </b> ou <b> Grupo de segurança </b><br>
       - E por último na opção de Listeners você irá escolher seu Target Group criado anteriormente.<br>
       - Revise suas configurações.<br>
-      - E clique em <b>Create Load Balancer</b> ou <b> Criar Load Balancer </b>
+      - E clique em <b>Create Load Balancer</b> ou <b> Criar Load Balancer </b><br>
 
 <h1> Referências </h1>
 
