@@ -138,7 +138,7 @@ Dentro do serviço de <b>Target Group</b> siga os seguintes passos:<br>
       - Revise as configurações que seu Target group ficou.<br>
       - Caso estiver tudo certo pode clicar em <b>Criar Grupo de Destino</b> ou <b> Create Target Group</b><br>
       
-ALB Agora:
+ALB Agora:<br>
       - Após concluir as configurações do Target group vamos para a opção<br>
       Load Balancer no Serviço de EC2<br>
       - Escolha a opção de <b> Application Load Balancer </b> e clique em <b> Create </b><br>
