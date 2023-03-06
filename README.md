@@ -14,6 +14,17 @@ Tipo de Instância | Tipo de chave | Cong. Rede | Armazenamento
 ---|---|---|---
 T3 Small (Family) | .pem | 0.0.0.0/0 | 8GiB (gp2)
 <div>
+
+### Portas da instância (entradas e saídas)
+
+TCP | UDP | NFS | HTTP | SSH | HTTPS
+---|---|---|---|---|---
+8080 | 2049 | 2049 | 80 | 22 | 443
+111 | 111 | 
+443 | 
+80 |
+
+
 <a href="https://cdn-icons-png.flaticon.com/512/5610/5610989.png" target="_blank"><img height="20" width="20" src="https://cdn-icons-png.flaticon.com/512/5610/5610989.png" target="_blank"></a>  Observação: A configuração de rede está com 0.0.0.0/0 para facilitar o acesso mas<br>
 não é uma boa prática utilizar essa cong. de rede pois pode deixar a instância vulnerável<br>
 estou utilizando porquê é um ambiente apenas para testes, nada de confidêncial está em risco<br>
